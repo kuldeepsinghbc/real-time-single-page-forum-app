@@ -9,32 +9,16 @@ use App\Http\Resources\QuestionResource;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return QuestionResource::collection(Question::latest()->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // auth()->user()->question()->create($request->all());
@@ -53,17 +37,10 @@ class QuestionController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Question $question)
     {
         $question->update($request->all());
-        return response('Update',202);
+        return response('Update',Response::HTTP_ACCEPTED);
     }
     public function destroy(Question $question)
     {
